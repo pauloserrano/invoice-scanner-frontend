@@ -1,15 +1,13 @@
 interface FileInputProps {
-  id?: string
-  name?: string
+  [prop: string]: any
 }
 
-export const FileInput = ({ id, name }: FileInputProps = {}) => {
+export const FileInput = ({ ...otherProps }: FileInputProps = {}) => {
   return (
     <input 
-      type='file' 
-      id={id} 
-      name={name} 
+      type='file'
       className="flex items-center justify-center p-4 border border-dashed border-white/50 rounded-lg cursor-pointer"
+      {...otherProps}
     />
   )
 }

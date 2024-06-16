@@ -7,7 +7,7 @@ interface ButtonProps {
   small?: boolean
   icon?: IconType
   children: React.ReactNode
-  [x: string]: any
+  [prop: string]: any
 }
 
 export function Button({ icon: Icon, outline, small, children, ...otherProps }: ButtonProps) {
