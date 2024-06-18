@@ -7,7 +7,7 @@ body {
 }
 
 .pretitle {
-  @apply font-alexBrush text-[42px] text-accent leading-none;
+  @apply font-alexBrush text-[42px] text-rose-500 leading-none;
 }
 
 .title {

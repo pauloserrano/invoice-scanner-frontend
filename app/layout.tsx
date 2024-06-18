@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Alex_Brush, Montserrat } from "next/font/google";
 import { Header } from "@/components";
 import "./globals.css";
+import { SessionContextProvider } from "@/contexts/SessionContext";
+import getCurrentUser from "@/actions/getCurrentUser";
 
 const alexBrush = Alex_Brush({ 
   subsets: ["latin"],
@@ -20,16 +22,20 @@ export const metadata: Metadata = {
   description: "Invoice Scanner App",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+interface RootLayoutProps {
+  children: Readonly<React.ReactNode>
+}
+
+export default async function RootLayout({ children }: RootLayoutProps) {
+  const currentUser = await getCurrentUser()
+
   return (
     <html lang="en">
       <body className={`${alexBrush.variable} ${montserrat.variable} relative`}>
-        <Header />
-        {children}
+        <SessionContextProvider>
+          <Header currentUser={currentUser} />
+          {children}
+        </SessionContextProvider>
       </body>
     </html>
   );
