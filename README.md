@@ -48,7 +48,7 @@ This repository is the frontend of the application. The backend can be found [he
 
 ## Getting Started
 
-Access the app here: [Deploy]()
+Access the app here: [Deploy](https://invoice-scanner-frontend.vercel.app/)
 
 Alternatively, you can run a local copy by following the steps below.
 
