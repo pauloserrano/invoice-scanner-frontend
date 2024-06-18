@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Alex_Brush, Montserrat } from "next/font/google";
 import { Header } from "@/components";
-import "./globals.css";
 import { SessionContextProvider } from "@/contexts/SessionContext";
 import getCurrentUser from "@/actions/getCurrentUser";
+import "./globals.css";
 
 const alexBrush = Alex_Brush({ 
   subsets: ["latin"],

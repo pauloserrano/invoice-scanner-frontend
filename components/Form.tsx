@@ -6,15 +6,15 @@ import { useSession } from "next-auth/react"
 import { useRouter } from "next/navigation"
 
 export const Form = () => {
-  const { data: session } = useSession()
   const router = useRouter()
+  const { data: session } = useSession()
+
   const [file, setFile] = useState<File>()
   const [isLoading, setIsLoading] = useState(false)
   const [extractedText, setExtractedText] = useState<string>("")
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
-    
     if (!file) {
       // TODO Add Warning Toast
       alert("No file uploaded")
@@ -34,11 +34,13 @@ export const Form = () => {
 
       const res = await fetch(process.env.NEXT_PUBLIC_DB_BASE_URL + '/invoice/upload', {
         method: 'POST',
+        headers: { Authorization: `Bearer ${session.accessToken}`},
         body: formData
       })
 
       const data = await res.json()
-      setExtractedText(data.text)
+      
+      setExtractedText(data.extractedText)
       
     } catch (error) {
       console.error(error)

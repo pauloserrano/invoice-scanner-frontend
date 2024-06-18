@@ -35,7 +35,6 @@ export const authOptions: NextAuthOptions = {
   ],
   callbacks: {
     async jwt({ token, user, account, profile }) {
-      console.log({ from: "config", token, user, account, profile })
       // Handle credential-based login
       if (account?.type === "credentials" && user) { 
         return {

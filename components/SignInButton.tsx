@@ -8,10 +8,9 @@ interface SignInButtonProps {
 }
 
 export const SignInButton = ({ currentUser }: SignInButtonProps) => {
-  const { data: session, ...others } = useSession()
-  console.log({session, ...others})
+  const { data: session } = useSession()
 
-  if(session) {
+  if (session) {
     return (
       <div className='flex gap-4 ml-auto'>
         <p className="text-white">{currentUser.name}</p>
