@@ -12,7 +12,7 @@ export const navLinks = [
   },
   {
     path: "/invoices",
-    name: "My Invoices"
+    name: "Invoices"
   },
   {
     path: "/profile",

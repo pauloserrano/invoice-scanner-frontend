@@ -20,7 +20,8 @@ export const NavMobile = () => {
         <RiCloseLine className="text-5xl"/>
       </div>
       <Nav 
-        containerStyles="flex flex-col text-[30px] uppercase font-bold bg-pink-500/10 h-full items-center justify-center gap-y-8" 
+        containerStyles="flex flex-col uppercase font-bold bg-pink-500/10 h-full items-center justify-center gap-y-12" 
+        linkStyles="text-2xl"
         links={[ ...navLinks, { path: "/", name: "Logout" } ]}/>
     </nav>
   )
