@@ -3,7 +3,7 @@
 import { useContext } from "react";
 import { RiCloseLine } from "react-icons/ri";
 import { NavContext } from "@/contexts/NavContext";
-import { Nav } from "./Nav";
+import { Nav, navLinks } from "./Nav";
 
 export const NavMobile = () => {
   const { isOpen, setIsOpen } = useContext(NavContext);
@@ -19,7 +19,9 @@ export const NavMobile = () => {
       >
         <RiCloseLine className="text-5xl"/>
       </div>
-      <Nav containerStyles="flex flex-col text-[30px] uppercase font-bold bg-pink-500/10 h-full items-center justify-center gap-y-8" />
+      <Nav 
+        containerStyles="flex flex-col text-[30px] uppercase font-bold bg-pink-500/10 h-full items-center justify-center gap-y-8" 
+        links={[ ...navLinks, { path: "/", name: "Logout" } ]}/>
     </nav>
   )
 }

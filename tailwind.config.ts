@@ -20,7 +20,6 @@ const config: Config = {
       xl: "1310px",
     },
     extend: {
-      backgroundImage: {},
       fontFamily: {
         alexBrush: [`var(--font-alexBrush)`, "sans-serif"],
         montserrat: [`var(--font-montserrat)`, "sans-serif"]
@@ -33,7 +32,26 @@ const config: Config = {
           DEFAULT: "#7f1cfc",
           hover: "#6519c6"
         }
-      }
+      },
+      keyframes: {
+        'lds-ellipsis1': {
+          '0%': { transform: 'scale(0)' },
+          '100%': { transform: 'scale(1)' },
+        },
+        'lds-ellipsis2': {
+          '0%': { transform: 'translate(0, 0)' },
+          '100%': { transform: 'translate(24px, 0)' },
+        },
+        'lds-ellipsis3': {
+          '0%': { transform: 'scale(1)' },
+          '100%': { transform: 'scale(0)' },
+        },
+      },
+      animation: {
+        'lds-ellipsis1': 'lds-ellipsis1 0.6s infinite cubic-bezier(0, 1, 1, 0)',
+        'lds-ellipsis2': 'lds-ellipsis2 0.6s infinite cubic-bezier(0, 1, 1, 0)',
+        'lds-ellipsis3': 'lds-ellipsis3 0.6s infinite cubic-bezier(0, 1, 1, 0)',
+      },
     },
   },
   plugins: [],

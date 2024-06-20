@@ -107,11 +107,14 @@ export const Form = () => {
           accept=".jpg, .jpeg, .png, .pdf"
           onChange={handleFileChange}
         />
-        {isLoading && <Spinner />}
+
+        {isLoading && <div className="mx-auto"><Spinner /></div>}
+        
         <pre className="text-center">{file?.name}</pre>
         <Button
           type="submit" 
-          buttonStyles="flex mx-auto"
+          buttonStyles={`flex mx-auto`}
+          disabled={isLoading}
         >
           Upload File
         </Button>
@@ -125,11 +128,14 @@ export const Form = () => {
           <textarea 
             value={invoice.extractedText} 
             onChange={handleTextChange}
-            disabled={invoice.extractedText?.length === 0} 
-            className="my-4 p-2 w-full h-[250px] text-white bg-transparent border border-white"
+            disabled={isLoading || invoice.extractedText === undefined} 
+            className={`
+              my-4 p-2 w-full h-[250px] text-white bg-transparent border
+              ${invoice.extractedText === undefined ? "border-white/50 cursor-not-allowed" : "border-white"}
+            `}
           />
         <Button 
-          disabled={invoice.extractedText?.length === 0} 
+          disabled={isLoading || invoice.extractedText === undefined} 
           type="submit"
           buttonStyles="flex mx-auto"
         >

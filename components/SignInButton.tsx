@@ -14,9 +14,11 @@ export const SignInButton = ({ currentUser }: SignInButtonProps) => {
 
   if (session) {
     return (
-      <div className='flex items-center gap-4 ml-auto'>
-        <p className="text-white">{currentUser.name}</p>
-        <Avatar src={session.user.image || "/assets/placeholder.jpg"} />
+      <div className='hidden xl:flex items-center gap-8 ml-auto'>
+        <div className='flex gap-4 items-center justify-between'>
+          <p className="text-white">{currentUser.name}</p>
+          <Avatar src={session.user.image || "/assets/placeholder.jpg"} />
+        </div>
         <Button small outline>
           <Link 
             href="/api/auth/signout"

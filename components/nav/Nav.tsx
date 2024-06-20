@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation'
 import { NavContext } from '@/contexts/NavContext'
 import { useContext } from 'react'
 
-const links = [
+export const navLinks = [
   {
     path: "/",
     name: "Home"
@@ -21,11 +21,12 @@ const links = [
 ]
 
 interface NavProps {
+  links?: { path: string, name: string }[]
   containerStyles?: string
   linkStyles?: string
 }
 
-export const Nav = ({ containerStyles, linkStyles }: NavProps) => {
+export const Nav = ({ containerStyles, linkStyles, links=navLinks }: NavProps) => {
   const pathname = usePathname()
   const { setIsOpen } = useContext(NavContext)
 
