@@ -21,16 +21,17 @@ export const InvoiceList = ({ session }: InvoiceListProps) => {
     return `${d.getDate()}/${d.getMonth() + 1}/${d.getFullYear()}`
   }
 
-  if (error) return (
-    <div className="text-center">Failed to fetch data</div>
-  )
   if (!invoices) return (
     <div className="text-center">Loading...</div>
+  )
+  
+  if (error) return (
+    <div className="text-center">Failed to fetch data</div>
   )
 
   return (
     <div className='flex flex-col xl:flex-row xl:flex-wrap lg:basis-1/2 justify-between gap-12 py-10 xl:py-16 border-t border-white/20'>
-      {invoices?.map(invoice => (
+      {invoices?.length > 0 && invoices?.map(invoice => (
         <div key={invoice.id} className='flex-1 lg:basis-2/5'>
           <div className='text-accent font-bold mb-1'>{formatDate(invoice.createdAt)}</div>
           <div className='text-xl font-medium mb-4'>New Invoice</div>

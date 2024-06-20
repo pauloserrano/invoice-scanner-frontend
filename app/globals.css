@@ -37,7 +37,3 @@ body {
 .section {
   @apply py-12 xl:py-20;
 }
-
-.active {
-  @apply border-b-2 border-accent;
-}

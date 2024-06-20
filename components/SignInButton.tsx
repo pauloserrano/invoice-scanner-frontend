@@ -2,6 +2,8 @@
 
 import { useSession } from 'next-auth/react'
 import Link from 'next/link'
+import { Button } from './Button'
+import Avatar from './Avatar'
 
 interface SignInButtonProps {
   currentUser: any
@@ -12,14 +14,17 @@ export const SignInButton = ({ currentUser }: SignInButtonProps) => {
 
   if (session) {
     return (
-      <div className='flex gap-4 ml-auto'>
+      <div className='flex items-center gap-4 ml-auto'>
         <p className="text-white">{currentUser.name}</p>
-        <Link 
-          href="/api/auth/signout"
-          className="flex gap-4 ml-auto text-white"
-        >
-          Logout
-        </Link>
+        <Avatar src={session.user.image || "/assets/placeholder.jpg"} />
+        <Button small outline>
+          <Link 
+            href="/api/auth/signout"
+            className="flex gap-4 ml-auto text-white"
+          >
+            Logout
+          </Link>
+        </Button>
       </div>
     )
   }
