@@ -5,36 +5,43 @@ import { IconType } from "react-icons"
 interface ButtonProps {
   outline?: boolean
   small?: boolean
+  fullWidth?: boolean
   icon?: IconType
+  buttonStyles?: string
   children: React.ReactNode
   [prop: string]: any
 }
 
-export function Button({ icon: Icon, outline, small, children, ...otherProps }: ButtonProps) {
+export function Button({ icon: Icon, outline, small, fullWidth, children, buttonStyles, ...otherProps }: ButtonProps) {
   return (
     <button
       {...otherProps}
       className={`
         relative
+        rounded-lg
+        transition
+        hover:opacity-80
         disabled:opacity-70
         disabled:cursor-not-allowed
-        rounded-lg
-        hover:opacity-80
-        transition
-        w-full
+        ${buttonStyles}
+        ${fullWidth
+          ? 'w-full'
+          : ''
+        }
         ${outline 
-          ? 'bg-white border-black text-black' 
+          ? 'bg-transparent border-white text-white' 
           : 'bg-rose-500 border-rose-500 text-white'
         }
         ${small
-          ? 'py-1 text-sm font-light border-[1px]'
-          : 'py-3 text-md font-semibold border-2'
+          ? 'py-2 px-4 text-sm font-light border-[1px]'
+          : 'py-4 px-8 text-md font-semibold border-2'
         }
-        ${otherProps.className ? otherProps.className : ""}
       `}
     >
-      {Icon && ( <Icon size={24} className="absolute left-4 top-3"/> )}
-      {children}
+      <div className="flex justify-center items-center gap-2 text-inherit">
+        {Icon && ( <Icon className="text-inherit"/> )}
+        {children}
+      </div>
     </button>
   )
 }

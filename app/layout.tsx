@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Alex_Brush, Montserrat } from "next/font/google";
 import { Header } from "@/components";
-import { SessionContextProvider } from "@/contexts/SessionContext";
+import { SessionContextProvider } from "@/providers/SessionProvider";
+import { ToasterProvider } from "@/providers/ToastProvider";
 import getCurrentUser from "@/actions/getCurrentUser";
 import "./globals.css";
 
@@ -33,6 +34,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
     <html lang="en">
       <body className={`${alexBrush.variable} ${montserrat.variable} relative`}>
         <SessionContextProvider>
+          <ToasterProvider />
           <Header currentUser={currentUser} />
           {children}
         </SessionContextProvider>

@@ -1,16 +1,40 @@
+"use client"
+
+import { usePathname } from 'next/navigation'
 import Link from 'next/link'
-import React from 'react'
+
+const links = [
+  {
+    path: "/",
+    name: "Home"
+  },
+  {
+    path: "/invoices",
+    name: "My Invoices"
+  },
+  {
+    path: "/profile",
+    name: "Profile"
+  },
+]
 
 export const Nav = () => {
+  const pathname = usePathname()
+
   return (
-    <nav className='flex gap-4'>
-      <Link href={"/"} className='transition-colors hover:text-blue-500'>
-        Home
-      </Link>  
-      
-      <Link href={"/dashboard"} className='transition-colors hover:text-blue-500'>
-        Dashboard
-      </Link>  
+    <nav className='flex gap-6'>
+      {links.map((link, id) => (
+        <Link 
+          key={id}
+          href={link.path}
+          className={`
+            text-lg
+            ${pathname === link.path && "active"} 
+          `}
+        >
+          {link.name}
+        </Link>
+      ))}
     </nav>
   )
 }
