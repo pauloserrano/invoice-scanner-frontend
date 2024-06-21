@@ -17,9 +17,10 @@ interface ModalProps {
   secondaryAction?: () => void
   children?: React.ReactNode
   footer?: React.ReactNode
+  includeOauth?: boolean
 }
 
-export function Modal({ isOpen, onClose, onSubmit, title, actionLabel, disabled, secondaryAction, secondaryActionLabel, children, footer }: ModalProps) {
+export function Modal({ isOpen, onClose, onSubmit, title, actionLabel, disabled, secondaryAction, secondaryActionLabel, children, footer, includeOauth=true }: ModalProps) {
   const [showModal, setShowModal] = useState<boolean>(isOpen)
 
   useEffect(() => {
@@ -100,16 +101,20 @@ export function Modal({ isOpen, onClose, onSubmit, title, actionLabel, disabled,
               </main>
               
               <footer className="flex flex-col gap-4 mt-3 p-6">
-                <hr />
-                <Button 
-                  outline
-                  icon={FcGoogle}
-                  onClick={() => signIn("google")}
-                  buttonStyles="border-black/20 bg-white"
-                  fullWidth
-                >
-                  <span className="text-black/80">Continue with Google</span>
-                </Button>
+                {includeOauth && (
+                  <>
+                    <hr />
+                    <Button 
+                      outline
+                      icon={FcGoogle}
+                      onClick={() => signIn("google")}
+                      buttonStyles="border-black/20 bg-white"
+                      fullWidth
+                    >
+                      <span className="text-black/80">Continue with Google</span>
+                    </Button>
+                  </>
+                )}
                 {footer}
               </footer>
             </article>

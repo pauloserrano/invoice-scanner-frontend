@@ -10,6 +10,8 @@ export const enum MODAL_REDUCER_ACTIONS {
   CLOSE_LOGIN_MODAL = "CLOSE_LOGIN_MODAL",
   OPEN_SIGNUP_MODAL = "OPEN_SIGNUP_MODAL",
   CLOSE_SIGNUP_MODAL = "CLOSE_SIGNUP_MODAL",
+  OPEN_LOGOUT_MODAL = "OPEN_LOGOUT_MODAL",
+  CLOSE_LOGOUT_MODAL = "CLOSE_LOGOUT_MODAL"
 }
 
 export const ModalReducer = (state: ModalState, action: ModalAction): ModalState => {
@@ -25,6 +27,12 @@ export const ModalReducer = (state: ModalState, action: ModalAction): ModalState
         ...state,
         signupModal: { isOpen: true }
       }
+    
+    case MODAL_REDUCER_ACTIONS.OPEN_LOGOUT_MODAL:
+      return {
+        ...state,
+        logoutModal: { isOpen: true }
+      }
 
     case MODAL_REDUCER_ACTIONS.CLOSE_LOGIN_MODAL:
       return {
@@ -36,6 +44,12 @@ export const ModalReducer = (state: ModalState, action: ModalAction): ModalState
       return {
         ...state,
         signupModal: { isOpen: false }
+      }
+    
+    case MODAL_REDUCER_ACTIONS.CLOSE_LOGOUT_MODAL:
+      return {
+        ...state,
+        logoutModal: { isOpen: false }
       }
         
     default: 

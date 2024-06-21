@@ -15,6 +15,11 @@ export const useModalContext = () => {
     callback && callback()
   }
 
+  function openLogoutModal(callback?: () => void) {
+    dispatch({ type: MODAL_REDUCER_ACTIONS.OPEN_LOGOUT_MODAL })
+    callback && callback()
+  }
+
   function closeLoginModal(callback?: () => void) {
     dispatch({ type: MODAL_REDUCER_ACTIONS.CLOSE_LOGIN_MODAL })
     callback && callback()
@@ -24,14 +29,21 @@ export const useModalContext = () => {
     dispatch({ type: MODAL_REDUCER_ACTIONS.CLOSE_SIGNUP_MODAL })
     callback && callback()
   }
+  
+  function closeLogoutModal(callback?: () => void) {
+    dispatch({ type: MODAL_REDUCER_ACTIONS.CLOSE_LOGOUT_MODAL })
+    callback && callback()
+  }
 
   return {
     state,
     actions: {
       openLoginModal,
       openSignupModal,
+      openLogoutModal,
       closeLoginModal,
-      closeSignupModal
+      closeSignupModal,
+      closeLogoutModal
     }
   }
 }

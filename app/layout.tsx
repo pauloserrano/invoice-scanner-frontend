@@ -3,7 +3,7 @@ import { Alex_Brush, Montserrat } from "next/font/google"
 import { SessionContextProvider } from "@/providers/SessionProvider"
 import { ToasterProvider } from "@/providers/ToastProvider"
 import { ModalProvider } from "@/contexts/ModalContext"
-import { Header, LoginModal, SignupModal } from "@/components"
+import { Header, LoginModal, LogoutModal, SignupModal } from "@/components"
 import "./globals.css"
 
 const alexBrush = Alex_Brush({ 
@@ -36,6 +36,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
           <ModalProvider>
             <LoginModal />
             <SignupModal />
+            <LogoutModal />
             <Header />
             {children}
           </ModalProvider>

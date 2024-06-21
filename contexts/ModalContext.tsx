@@ -5,7 +5,8 @@ import { ModalAction, ModalReducer } from "@/reducers/ModalReducer";
 
 export interface ModalState {
   loginModal: { isOpen: boolean },
-  signupModal: { isOpen: boolean }
+  signupModal: { isOpen: boolean },
+  logoutModal: { isOpen: boolean }
 }
 
 export const ModalContext = createContext({} as { 
@@ -16,7 +17,8 @@ export const ModalContext = createContext({} as {
 export const ModalProvider = ({ children }: { children: React.ReactNode }) => {
   const [state, dispatch] = useReducer(ModalReducer, {
     loginModal: { isOpen: false },
-    signupModal: { isOpen: false }
+    signupModal: { isOpen: false },
+    logoutModal: { isOpen: false }
   })
 
   return (

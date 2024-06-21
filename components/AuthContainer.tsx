@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { Button, Avatar } from '@/components'
 import { useModalContext } from '@/hooks/useModalContext'
 
-export const SignInButton = () => {
+export const AuthContainer = () => {
   const { data: session } = useSession()
   const { actions } = useModalContext()
 
@@ -19,6 +19,7 @@ export const SignInButton = () => {
           Login
         </button>
         <button 
+          onClick={() => actions.openSignupModal()}
           className="flex gap-4 ml-auto text-white bg-primary py-2 px-4 rounded"
         >
           Sign up
@@ -34,12 +35,12 @@ export const SignInButton = () => {
         <Avatar src={session.user.image || "/assets/placeholder.jpg"} />
       </div>
       <Button small outline>
-        <Link 
-          href="/api/auth/signout"
+        <button
+          onClick={() => actions.openLogoutModal()}
           className="flex gap-4 ml-auto text-white"
         >
           Logout
-        </Link>
+        </button>
       </Button>
     </div>
   )
