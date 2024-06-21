@@ -4,7 +4,7 @@ interface AvatarProps {
   src: string
 }
 
-export default function Avatar({ src }: AvatarProps) {
+export function Avatar({ src }: AvatarProps) {
   if (!src) return
 
   return (

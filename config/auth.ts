@@ -77,10 +77,7 @@ export const authOptions: NextAuthOptions = {
         ...session,
         ...token
       }
-    },
-    redirect() {
-      return "/"
-    },
+    }
   },
   session: { strategy: "jwt" },
 }

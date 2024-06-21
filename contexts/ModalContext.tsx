@@ -1,28 +1,26 @@
-import { createContext, useState } from "react";
+"use client"
 
-interface IModal {
-  isOpen: boolean
-  onOpen: (callback?: () => void) => void
-  onClose: (callback?: () => void) => void
+import { createContext, useReducer } from "react";
+import { ModalAction, ModalReducer } from "@/reducers/ModalReducer";
+
+export interface ModalState {
+  loginModal: { isOpen: boolean },
+  signupModal: { isOpen: boolean }
 }
 
-const ModalContext = createContext({} as IModal)
+export const ModalContext = createContext({} as { 
+  state: ModalState,
+  dispatch: React.Dispatch<ModalAction>
+})
 
 export const ModalProvider = ({ children }: { children: React.ReactNode }) => {
-  const [isOpen, setIsOpen] = useState<boolean>(false)
-
-  function onOpen(callback?: () => void) {
-    setIsOpen(true)
-    callback && callback()
-  }
-
-  function onClose(callback?: () => void) {
-    setIsOpen(false)
-    callback && callback()
-  }
+  const [state, dispatch] = useReducer(ModalReducer, {
+    loginModal: { isOpen: false },
+    signupModal: { isOpen: false }
+  })
 
   return (
-    <ModalContext.Provider value={{ isOpen, onOpen, onClose }}>
+    <ModalContext.Provider value={{ state, dispatch }}>
       {children}
     </ModalContext.Provider>
   )

@@ -1,15 +1,11 @@
 "use client"
 
-import { SignInButton, Nav, NavMobile, MenuButton } from "@/components"
-import { NavContextProvider } from "@/contexts/NavContext"
-import Link from "next/link"
 import { useEffect, useState } from "react"
+import Link from "next/link"
+import { NavContextProvider } from "@/contexts/NavContext"
+import { SignInButton, Nav, NavMobile, MenuButton } from "@/components"
 
-interface HeaderProps {
-  currentUser: any
-}
-
-export const Header = ({ currentUser }: HeaderProps) => {
+export const Header = () => {
   const [active, setActive] = useState<boolean>(false);
 
   useEffect(() => {
@@ -35,7 +31,7 @@ export const Header = ({ currentUser }: HeaderProps) => {
         </h1>
         <Nav containerStyles="hidden xl:flex items-center gap-x-8"/>
         <NavMobile />
-        <SignInButton currentUser={currentUser} />
+        <SignInButton />
         <MenuButton />
       </header>
     </NavContextProvider>

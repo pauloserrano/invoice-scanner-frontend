@@ -2,8 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { NavContext } from '@/contexts/NavContext'
-import { useContext } from 'react'
+import { useNavContext } from '@/hooks/useNavContext'
 
 export const navLinks = [
   {
@@ -28,7 +27,7 @@ interface NavProps {
 
 export const Nav = ({ containerStyles, linkStyles, links=navLinks }: NavProps) => {
   const pathname = usePathname()
-  const { setIsOpen } = useContext(NavContext)
+  const { setIsOpen } = useNavContext()
 
   return (
     <nav className={`${containerStyles || "flex gap-6"}`}>

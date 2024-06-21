@@ -1,5 +1,4 @@
 import { Form, SectionHeader } from "@/components";
-import { LoginModal } from "@/components/modals/LoginModal";
 
 const Home = () => {
   return (

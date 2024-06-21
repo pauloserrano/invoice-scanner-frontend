@@ -23,7 +23,6 @@ export function Button({ icon: Icon, outline, small, fullWidth, children, button
         hover:opacity-80
         disabled:opacity-70
         disabled:cursor-not-allowed
-        ${buttonStyles}
         ${fullWidth
           ? 'w-full'
           : ''
@@ -36,6 +35,7 @@ export function Button({ icon: Icon, outline, small, fullWidth, children, button
           ? 'py-2 px-4 text-sm font-light border-[1px]'
           : 'py-4 px-8 text-md font-semibold border-2'
         }
+        ${buttonStyles}
       `}
     >
       <div className="flex justify-center items-center gap-2 text-inherit">

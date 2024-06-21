@@ -1,12 +1,11 @@
 "use client"
 
-import { useContext } from "react";
 import { RiCloseLine } from "react-icons/ri";
-import { NavContext } from "@/contexts/NavContext";
+import { useNavContext } from "@/hooks/useNavContext";
 import { Nav, navLinks } from "./Nav";
 
 export const NavMobile = () => {
-  const { isOpen, setIsOpen } = useContext(NavContext);
+  const { isOpen, setIsOpen } = useNavContext();
 
   return (
     <nav className={`
