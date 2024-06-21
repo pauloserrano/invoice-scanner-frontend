@@ -1,11 +1,11 @@
 "use client"
 
-import { useFetch } from '@/hooks'
-import { Invoice } from './InvoiceContainer'
-import { Session } from 'next-auth'
 import Link from 'next/link'
-import { Button } from '../Button'
+import { Session } from 'next-auth'
 import { FaEdit } from 'react-icons/fa'
+import toast from 'react-hot-toast'
+import { useFetch } from '@/hooks'
+import { Invoice, Button } from "@/components"
 
 interface InvoiceListProps {
   session: Session
@@ -19,6 +19,10 @@ export const InvoiceList = ({ session }: InvoiceListProps) => {
   function formatDate(date: string): string {
     const d = new Date(date)
     return `${d.getDate()}/${d.getMonth() + 1}/${d.getFullYear()}`
+  }
+
+  function handleEdit() {
+    toast("Feature coming soon!")
   }
 
   if (!invoices) return (
@@ -41,7 +45,14 @@ export const InvoiceList = ({ session }: InvoiceListProps) => {
           <div className='text-xl font-medium mb-4'>New Invoice</div>
           <div className='text-white/70 mb-6 font-light'>Extracted Text: {invoice.extractedText}</div>
           <Link href="#" className='flex items-center gap-x-2 group'>
-            <Button small outline icon={FaEdit}>Edit Invoice</Button>
+            <Button 
+              onClick={handleEdit}
+              icon={FaEdit}
+              small
+              outline
+            >
+              Edit Invoice
+            </Button>
           </Link>
         </div>
       ))}

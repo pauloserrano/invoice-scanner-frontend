@@ -19,9 +19,9 @@ export const UploadForm = ({ setInvoice }: UploadFormProps) => {
   async function handleFileSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
 
-    if (!file) return toast("Please upload a file first")
-
     if (!session) return actions.openLoginModal()
+    
+    if (!file) return toast("Please upload a file first")
     
     try {
       setIsLoading(true)
@@ -58,30 +58,30 @@ export const UploadForm = ({ setInvoice }: UploadFormProps) => {
 
   return (
     <form 
-    onSubmit={handleFileSubmit}
-    className="flex flex-col gap-4 w-full"
-  >
-    <FileInput 
-      name="file"
-      accept=".jpg, .jpeg, .png, .pdf"
-      onChange={handleFileChange}
-    />
-
-    {isLoading && (
-      <div className="mx-auto">
-        <Spinner />
-      </div>
-    )}
-    
-    <pre className="text-center">{file?.name}</pre>
-    
-    <Button
-      type="submit" 
-      buttonStyles={`flex mx-auto`}
-      disabled={isLoading}
+      onSubmit={handleFileSubmit}
+      className="flex flex-col gap-4 w-full"
     >
-      Upload File
-    </Button>
-  </form>
+      <FileInput 
+        name="file"
+        accept=".jpg, .jpeg, .png, .pdf"
+        onChange={handleFileChange}
+      />
+
+      {isLoading && (
+        <div className="mx-auto">
+          <Spinner />
+        </div>
+      )}
+      
+      <pre className="text-center">{file?.name}</pre>
+      
+      <Button
+        type="submit" 
+        buttonStyles={`flex mx-auto`}
+        disabled={isLoading}
+      >
+        Upload File
+      </Button>
+    </form>
   )
 }

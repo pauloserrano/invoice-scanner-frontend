@@ -15,7 +15,7 @@ export const InvoiceContainer = async () => {
 
   return (
     <section className="section container mx-auto">
-      <SectionHeader title="Invoices" />
+      <SectionHeader title="Invoices" pretitle="Your" />
       {session ? (
         <InvoiceList session={session} />
       ) : (

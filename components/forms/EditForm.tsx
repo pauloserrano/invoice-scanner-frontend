@@ -2,8 +2,8 @@
 
 import { useState } from 'react'
 import { useSession } from 'next-auth/react'
-import { useRouter } from 'next/navigation'
 import toast from 'react-hot-toast'
+import { useModalContext } from '@/hooks/useModalContext'
 import { Invoice, Button } from "@/components"
 
 interface EditFormProps {
@@ -12,21 +12,23 @@ interface EditFormProps {
 }
 
 export const EditForm = ({ invoice, setInvoice }: EditFormProps) => {
-  const router = useRouter()
   const { data: session } = useSession()
+  const { actions } = useModalContext()
   const [isLoading, setIsLoading] = useState<boolean>(false)
 
   async function handleEditSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
 
-    if (!session) return router.push('/api/auth/signin')
+    if (!session) return actions.openLoginModal()
     
     try {
       setIsLoading(true)
 
       const res = await fetch(process.env.NEXT_PUBLIC_DB_BASE_URL + '/invoice', {
         method: 'PATCH',
-        body: JSON.stringify(invoice),
+        body: JSON.stringify({
+          extractedText: invoice.extractedText,
+        }),
         headers: { Authorization: `Bearer ${session.accessToken}` }
       })
 
