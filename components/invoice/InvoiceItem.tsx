@@ -1,17 +1,15 @@
+import { Session } from "next-auth"
 import toast from "react-hot-toast"
 import { FaEdit, FaTrash } from "react-icons/fa"
 import { Button, Invoice } from "@/components"
-import { Session } from "next-auth"
-import { useRouter } from "next/navigation"
 
 interface InvoiceItemProps {
-  invoice: Invoice
   session: Session
+  invoice: Invoice
+  onDelete: (id: number, callback?: () => void) => void
 }
 
-export const InvoiceItem = ({ invoice, session }: InvoiceItemProps) => {
-  const router = useRouter()
-
+export const InvoiceItem = ({ session, invoice, onDelete }: InvoiceItemProps) => {
   function formatDate(date: string): string {
     const d = new Date(date)
     return `${d.getDate()}/${d.getMonth() + 1}/${d.getFullYear()}`
@@ -58,7 +56,7 @@ export const InvoiceItem = ({ invoice, session }: InvoiceItemProps) => {
         <Button 
           className="className='flex items-center gap-x-2 group"
           buttonStyles="border-rose-400 text-rose-400"
-          onClick={handleDelete}
+          onClick={() => onDelete(invoice.id, handleDelete)}
           icon={FaTrash}
           small
           outline
