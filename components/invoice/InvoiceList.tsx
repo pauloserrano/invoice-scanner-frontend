@@ -29,6 +29,10 @@ export const InvoiceList = ({ session }: InvoiceListProps) => {
     <div className="text-center">Failed to fetch data</div>
   )
 
+  if (invoices.length === 0) return (
+    <div className="text-center">No invoices found... create your first one in the home page!</div>
+  )
+
   return (
     <div className='flex flex-col xl:flex-row xl:flex-wrap lg:basis-1/2 justify-between gap-12 py-10 xl:py-16 border-t border-white/20'>
       {invoices?.length > 0 && invoices?.map(invoice => (

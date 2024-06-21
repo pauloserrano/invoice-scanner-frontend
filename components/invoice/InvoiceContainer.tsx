@@ -19,7 +19,7 @@ export const InvoiceContainer = async () => {
       {session ? (
         <InvoiceList session={session} />
       ) : (
-        <div>Nothing to see here</div>
+        <div className="text-center">Please login to see your invoices!</div>
       )}
     </div>
   )

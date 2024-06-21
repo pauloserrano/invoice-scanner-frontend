@@ -33,15 +33,14 @@ export const Form = () => {
         headers: { Authorization: `Bearer ${session.accessToken}` }
       })
 
+      if (!res?.ok) {
+        throw new Error("Something went wrong...")
+      }
+
       const data: Invoice = await res.json()
       setInvoice(data)
       
     } catch (error: any) {
-      if (error.statusCode === 401) {
-        toast.error("Login expired, please sign in again")
-        return router.push('/api/auth/signin')
-      }
-
       return toast.error(error.message)
     
     } finally {
@@ -64,15 +63,15 @@ export const Form = () => {
         headers: { Authorization: `Bearer ${session.accessToken}` }
       })
 
+      if (!res?.ok) {
+        console.log(res)
+        throw new Error("Something went wrong...")
+      }
+
       const data: Invoice = await res.json()
       setInvoice(data)
       
     } catch (error: any) {
-      if (error.statusCode === 401) {
-        toast.error("Login expired, please sign in again")
-        return router.push('/api/auth/signin')
-      }
-
       return toast.error(error.message)
     
     } finally {

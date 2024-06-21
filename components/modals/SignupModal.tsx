@@ -31,16 +31,16 @@ export const SignupModal = () => {
       const res = await fetch(`${process.env.NEXT_PUBLIC_DB_BASE_URL}/auth/signup`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, password }),
+        body: JSON.stringify({ name, email, password, provider: "credentials" }),
       })
 
       if (!res?.ok) {
-        console.log(res)
         throw new Error("Something went wrong...")
       }
 
-      actions.closeLoginModal()
       toast.success("Account created successfully!")
+      actions.closeSignupModal()
+      actions.openLoginModal()
       
     } catch (error: any) {
       toast.error(error.message)
