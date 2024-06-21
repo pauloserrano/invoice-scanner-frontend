@@ -5,10 +5,12 @@ import { FileInput, Button, Spinner, Invoice } from "@/components"
 import { useSession } from "next-auth/react"
 import { useRouter } from "next/navigation"
 import toast from "react-hot-toast"
+import { useModalContext } from "@/hooks/useModalContext"
 
 export const Form = () => {
   const router = useRouter()
   const { data: session } = useSession()
+  const { actions } = useModalContext()
 
   const [file, setFile] = useState<File>()
   const [isLoading, setIsLoading] = useState(false)
@@ -19,7 +21,9 @@ export const Form = () => {
 
     if (!file)  return toast("Please upload a file first")
 
-    if (!session) return router.push('/api/auth/signin')
+    if (!session) {
+      return actions.openLoginModal()
+    }
     
     try {
       setIsLoading(true)
@@ -52,7 +56,9 @@ export const Form = () => {
   async function handleEditSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
 
-    if (!session) return router.push('/api/auth/signin')
+    if (!session) {
+      return router.push('/api/auth/signin')
+    }
     
     try {
       setIsLoading(true)
@@ -64,7 +70,6 @@ export const Form = () => {
       })
 
       if (!res?.ok) {
-        console.log(res)
         throw new Error("Something went wrong...")
       }
 
