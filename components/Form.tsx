@@ -21,9 +21,7 @@ export const Form = () => {
 
     if (!file)  return toast("Please upload a file first")
 
-    if (!session) {
-      return actions.openLoginModal()
-    }
+    if (!session) return actions.openLoginModal()
     
     try {
       setIsLoading(true)
@@ -44,12 +42,14 @@ export const Form = () => {
       const data: Invoice = await res.json()
       setInvoice(data)
       
+      toast.success("Invoice Added Successfully!")
+      
     } catch (error: any) {
+      console.log(error)
       return toast.error(error.message)
     
     } finally {
       setIsLoading(false)
-      return toast.success("Invoice Added Successfully!")
     }
   }
 
