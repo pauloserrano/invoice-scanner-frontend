@@ -1,23 +1,13 @@
 import { getSession } from '@/actions/getCurrentUser'
+import { MdConstruction } from 'react-icons/md'
 
 export const ProfileContainer = async () => {
   const session = await getSession()
 
   return (
-    <div className='section container mx-auto'>
-      {session ? (
-        <div>
-          <div className="p-2 bg-gradient-to-b from-white to-slate-400 text-slate-900 text-center">User Profile</div>
-          <div className="grid grid-cols-2 p-2 gap-2 bg-white/90">
-            <p className="p-2 text-slate-500">Name: </p>
-            <p className="p-2 text-slate-900">{session?.user.name}</p>
-            <p className="p-2 text-slate-500">Email: </p>
-            <p className="p-2 text-slate-900">{session?.user.email}</p>
-          </div>
-        </div>
-      ) : (
-        "Nothing to see here"
-      )}
+    <div className='section container flex flex-col gap-4 justify-center items-center'>
+      <MdConstruction size={64} />
+      <p className='text-2xl'>Nothing to see here yet...</p>
     </div>
   )
 }
