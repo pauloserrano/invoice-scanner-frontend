@@ -1,11 +1,20 @@
 "use client"
 
+import { useSession } from "next-auth/react";
 import { RiCloseLine } from "react-icons/ri";
 import { useNavContext } from "@/hooks/useNavContext";
 import { Nav, navLinks } from "./Nav";
+import { useModalContext } from "@/hooks/useModalContext";
 
 export const NavMobile = () => {
   const { isOpen, setIsOpen } = useNavContext();
+  const { data: session } = useSession()
+  const { actions } = useModalContext()
+
+  const close = (callback?: () => void) => {
+    setIsOpen(false)
+    callback && callback()
+  }
 
   return (
     <nav className={`
@@ -21,7 +30,31 @@ export const NavMobile = () => {
       <Nav 
         containerStyles="flex flex-col uppercase font-bold bg-pink-500/10 h-full items-center justify-center gap-y-12" 
         linkStyles="text-2xl"
-        links={[ ...navLinks, { path: "/", name: "Logout" } ]}/>
+        links={navLinks}
+      >
+        {!session ? (
+          <>
+            <button 
+              className="uppercase font-bold text-lg"
+              onClick={() => close(actions.openLoginModal)}
+            >Login
+            </button>
+            <button
+              className="uppercase font-bold text-lg"
+              onClick={() => close(actions.openSignupModal)}
+            >Signup
+            </button>
+          </>
+        ) : (
+          <>
+            <button
+              className="uppercase font-bold text-lg"
+              onClick={() => close(actions.openLogoutModal)}
+            >Logout
+            </button>
+          </>
+        )}
+      </Nav>
     </nav>
   )
 }

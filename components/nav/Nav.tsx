@@ -23,9 +23,10 @@ interface NavProps {
   links?: { path: string, name: string }[]
   containerStyles?: string
   linkStyles?: string
+  children?: React.ReactNode
 }
 
-export const Nav = ({ containerStyles, linkStyles, links=navLinks }: NavProps) => {
+export const Nav = ({ containerStyles, linkStyles, links=navLinks, children }: NavProps) => {
   const pathname = usePathname()
   const { setIsOpen } = useNavContext()
 
@@ -45,6 +46,7 @@ export const Nav = ({ containerStyles, linkStyles, links=navLinks }: NavProps) =
           {link.name}
         </Link>
       ))}
+      {children}
     </nav>
   )
 }

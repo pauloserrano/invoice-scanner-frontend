@@ -1,7 +1,6 @@
 "use client"
 
 import { useSession } from 'next-auth/react'
-import Link from 'next/link'
 import { Button, Avatar } from '@/components'
 import { useModalContext } from '@/hooks/useModalContext'
 
@@ -11,7 +10,7 @@ export const AuthContainer = () => {
 
   if (!session) {
     return (
-      <div className='flex items-center gap-4 ml-auto'>
+      <div className='hidden xl:flex items-center gap-4 ml-auto'>
         <button 
           onClick={() => actions.openLoginModal()}
           className="flex gap-4 ml-auto text-white py-2 px-4 rounded"

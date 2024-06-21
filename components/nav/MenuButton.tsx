@@ -1,9 +1,9 @@
 "use client"
-import { NavContext } from "@/contexts/NavContext";
-import { useContext } from "react"
+
+import { useNavContext } from "@/hooks/useNavContext";
 
 export const MenuButton = () => {
-  const { setIsOpen } = useContext(NavContext);
+  const { setIsOpen } = useNavContext();
 
   return (
     <div onClick={() => setIsOpen(true)} className="group flex flex-col gap-y-2 cursor-pointer xl:hidden items-end">

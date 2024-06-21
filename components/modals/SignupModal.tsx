@@ -72,7 +72,7 @@ export const SignupModal = () => {
       title="Register"
       actionLabel="Create account"
       isOpen={state.signupModal.isOpen}
-      onClose={() => actions.openSignupModal()}
+      onClose={() => actions.closeSignupModal()}
       onSubmit={handleSubmit}
       footer={footer}
       disabled={isLoading}

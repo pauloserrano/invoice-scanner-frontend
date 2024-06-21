@@ -6,7 +6,7 @@ import { NavContextProvider } from "@/contexts/NavContext"
 import { AuthContainer, Nav, NavMobile, MenuButton } from "@/components"
 
 export const Header = () => {
-  const [active, setActive] = useState<boolean>(false);
+  const [active, setActive] = useState<boolean>(false)
 
   useEffect(() => {
     const handleScroll = () => {
