@@ -14,13 +14,13 @@ export const InvoiceContainer = async () => {
   const session = await getSession()
 
   return (
-    <div className="section container mx-auto">
+    <section className="section container mx-auto">
       <SectionHeader title="Invoices" />
       {session ? (
         <InvoiceList session={session} />
       ) : (
         <div className="text-center">Please login to see your invoices!</div>
       )}
-    </div>
+    </section>
   )
 }
