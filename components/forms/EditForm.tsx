@@ -24,12 +24,15 @@ export const EditForm = ({ invoice, setInvoice }: EditFormProps) => {
     try {
       setIsLoading(true)
 
-      const res = await fetch(process.env.NEXT_PUBLIC_DB_BASE_URL + '/invoice', {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_DB_BASE_URL}/invoice/${invoice.id}`, {
         method: 'PATCH',
+        headers: { 
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${session.accessToken}` 
+        },
         body: JSON.stringify({
-          extractedText: invoice.extractedText,
-        }),
-        headers: { Authorization: `Bearer ${session.accessToken}` }
+          extractedText: invoice.extractedText
+        })
       })
 
       if (!res?.ok) {
@@ -60,10 +63,10 @@ export const EditForm = ({ invoice, setInvoice }: EditFormProps) => {
 
   return (
     <form 
-    onSubmit={handleEditSubmit}
-    className="w-full py-12"
-  >
-    <h3 className="title py-6 text-center">Extracted Text</h3>
+      onSubmit={handleEditSubmit}
+      className="w-full py-12"
+    >
+      <h3 className="title py-6 text-center">Extracted Text</h3>
       <textarea 
         value={invoice.extractedText} 
         onChange={handleTextChange}
@@ -72,14 +75,14 @@ export const EditForm = ({ invoice, setInvoice }: EditFormProps) => {
           my-4 p-2 w-full h-[250px] text-white bg-transparent border
           ${!invoice.extractedText ? "border-white/50 cursor-not-allowed" : "border-white"}
         `}
-      />
-    <Button 
-      disabled={isLoading || !invoice.extractedText} 
-      type="submit"
-      buttonStyles="flex mx-auto"
-    >
-      Save Changes
-    </Button>
-  </form>
+        />
+      <Button 
+        disabled={isLoading || !invoice.extractedText} 
+        type="submit"
+        buttonStyles="flex mx-auto"
+      >
+        Save Changes
+      </Button>
+    </form>
   )
 }
