@@ -80,7 +80,7 @@ npm i
 **5.** Run the app
 
 ```sh
-npm build && npmstart
+npm build && npm start
 ```
 
 or
