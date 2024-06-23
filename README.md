@@ -56,27 +56,40 @@ Alternatively, you can run a local copy by following the steps below.
 
 ### Installation
 
-1. Clone both front and backend of this application
+**1.** If you haven't already, [get your backend up and running](https://github.com/pauloserrano/invoice-scanner-backend)
 
-   ```sh
-   git clone git@github.com:pauloserrano/invoice-scanner-frontend.git
+**2.** Clone this repository
 
-   git clone git@github.com:pauloserrano/invoice-scanner-backend.git
-   ```
+```sh
+git clone git@github.com:pauloserrano/invoice-scanner-frontend.git
+```
 
-2. Install the dependencies for both projects
-   ```sh
-   npm i
-   ```
-3. Start the backend server
-   ```sh
-   npm run start:dev
-   ```
-4. Start the frontend app
-   ```sh
-   npm run dev
-   ```
-5. Access the app at [http://localhost:3000/](http://localhost:3000/)
+**3.** Install the dependencies
+
+```sh
+npm i
+```
+
+**4.** Create a .env.local file copying the .env.example variables
+
+- **NEXT_PUBLIC_DB_BASE_URL**: The backend url you setup at step 1.
+- **NEXTAUTH_URL**: The frontend url. By default [http://localhost:3000/](http://localhost:3000/)
+- **NEXTAUTH_SECRET**: A random string
+- **GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET**: To get these API Keys you'll need a Google account and this [Documentation](https://developers.google.com/workspace/guides/create-credentials)
+
+**5.** Run the app
+
+```sh
+npm start
+```
+
+or
+
+```sh
+npm run dev
+```
+
+**6.** Access the app at [http://localhost:3000/](http://localhost:3000/)
 
 <br />
 
